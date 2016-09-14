@@ -1,0 +1,22 @@
+<!--<h3 highlight @flyInOut="listState" (click)="toggleListState()">Hero List</h3>
+  <div *ngFor='let hero of heroes | async'>
+  <a routerLink="{{hero.id}}">{{hero.id}} - {{hero.name}}</a>
+</div>-->
+
+<div class="columns">
+  <div class="column">
+    <div class="form-group">
+      <label>Displaying latest results for</label>
+      <select (change)="onChange($event.target.value)">
+          <option *ngFor="let resultTitle of allResultTitles" [value]="resultTitle.Id">{{resultTitle.Name}}</option>
+        </select>
+    </div>
+  </div>
+</div>
+<div class="columns">
+  <ul>
+    <li *ngFor="let result of dispResults" [@multiflyInOut]="'in'">
+      <result-detail [result]="result"></result-detail>
+    </li>
+  </ul>
+</div>

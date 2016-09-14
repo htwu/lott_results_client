@@ -1,0 +1,39 @@
+<div *ngIf="result">
+  <div class="columns">
+    <div class="column">
+      <h3 highlight>{{result.Name}}</h3>
+    </div>
+    <div class="column">
+      <img [src]="'/public/images/' + result.Id + '.png'">
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column">
+      <div>current draw: {{result.CurrentDrawDate | date}} Draw {{result.CurrentDrawNumber}}</div>
+    </div>
+    <div class="column">
+      <div>next draw: {{result.NextDrawDate | date }} Draw {{result.NextDrawNumber}}</div>
+    </div>
+  </div>
+  <div class="columns">
+    <div class="column">
+      <div>{{result.WinningNumbersName}}: {{result.WinningNumbers}}</div>
+    </div>
+    <div class="column">
+      <div>{{result.SupplementariesName}}: {{result.Supplementaries}}</div>
+    </div>
+  </div>
+  <table>
+    <tr>
+      <th *ngFor="let colName of result.ColNames">
+        {{colName}}
+      </th>
+    </tr>
+    <tr *ngFor="let colValues of result.ColValues">
+      <td *ngFor="let colValue of colValues">
+        {{colValue}}
+      </td>
+    </tr>
+  </table>
+  <label>{{result.Memo}}</label>
+</div>
