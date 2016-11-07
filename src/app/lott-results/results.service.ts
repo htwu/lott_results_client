@@ -9,8 +9,8 @@ import {Result} from './result'
 export class ResultsService {
   constructor(private http: Http) { }
 
-  // private resultsUrl = 'http://192.168.11.15:8848/api/lottresults';
-  private resultsUrl = '/api/lottresults';
+  private resultsUrl = 'http://win08:8848/api/lottresults';//must have CORS
+  // private resultsUrl = '/api/lottresults'; 
 
   getResults(): Promise<Result[]> {
     let headers = new Headers({
@@ -24,9 +24,9 @@ export class ResultsService {
   }
 
   private extractData(res: Response) {
-    let body = res.json();
-    console.log(body);
-    return body || [];
+    let results: Result[] = res.json() || [];
+    results.forEach(result => result.LogoUrl = '/public/images/' + result.Id + '.png');
+    return results;
   }
 
   private handleError(error: any) {

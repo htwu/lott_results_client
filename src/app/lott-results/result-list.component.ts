@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { Result } from './result';
 import { ResultsService } from './results.service';
+import { TattsResultsService } from './tatts-results.service';
 
 class ResultTitle {
   Id: number;
@@ -13,7 +14,7 @@ class ResultTitle {
 @Component({
   templateUrl: './result-list.component.html',
   styleUrls: ['./result-list.component.css'],
-  providers: [ResultsService],
+  providers: [ResultsService, TattsResultsService],
   animations: [
     trigger('multiflyInOut', [
       state('in', style({ transform: 'translateX(0)' })),
@@ -43,7 +44,8 @@ export class ResultListComponent implements OnInit, OnDestroy {
 
   allResultTitles: ResultTitle[];
   constructor(
-    private resutlsService: ResultsService,
+    private resultsService: ResultsService,
+    private tattsResultsService: TattsResultsService, 
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -61,7 +63,8 @@ export class ResultListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.resutlsService.getResults()
+    // this.resultsService.getResults()
+    this.tattsResultsService.getResults()
       .then(
       results => {
         this.allResults = results;

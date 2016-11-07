@@ -15,6 +15,7 @@ export class Result {
   WinningNumbersName: string;
   ColNames: string[];
   ColValues: string[][];
+  LogoUrl: string;
 }
 
 export class ResultDesc {
